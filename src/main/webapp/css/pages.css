@@ -1,0 +1,22 @@
+.page {
+	color: green;
+	font-family: Brush Script MT, cursive;
+	text-align: center;
+	font-weight: 900;
+	font-size: calc(24px + 16 * (100vw / 1280));
+}
+#mainPage {
+	display: block;
+}
+#regularPage {
+	display: none;
+}
+#charterPage {
+	display: none;
+}
+#cargoPage {
+	display: none;
+}
+#logInPage {
+	display: none;
+}

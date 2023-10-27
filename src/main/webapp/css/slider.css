@@ -1,0 +1,32 @@
+.slider {
+	display: grid;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	width: 100%;
+	height: 600px;
+	overflow: hidden;
+}
+
+.slide {
+	border-radius: 8px;
+	position: absolute;
+	left: 20%;
+	
+	width: 60%;
+	height: auto;
+	opacity: 0;
+	transition: opacity 1s;
+}
+.slide:first-child {
+	opacity: 1;
+}
+
+#slideText {
+	color: aqua;
+	position: absolute;
+	top: 8px;
+	left: 21%;
+	font-size: 20px;
+  }
+
