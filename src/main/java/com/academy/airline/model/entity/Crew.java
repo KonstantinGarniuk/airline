@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 public class Crew {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
     @ManyToOne
     @JoinColumn(name = "crew_job_id")
-    CrewJob job;
+    private CrewJob job;
     @ManyToOne
     @JoinColumn(name = "employee_id")
-    Employee employee;
+    private Employee employee;
 }

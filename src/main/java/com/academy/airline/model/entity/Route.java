@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
     @ManyToOne
     @JoinColumn(name = "departure_airport_id")
-    Airport departureAirport;
+    private Airport departureAirport;
     @ManyToOne
     @JoinColumn(name = "arrival_airport_id")
-    Airport arrivalAirport;
+    private Airport arrivalAirport;
     @Column(name = "distance")
-    Integer distance;
+    private Integer distance;
 }

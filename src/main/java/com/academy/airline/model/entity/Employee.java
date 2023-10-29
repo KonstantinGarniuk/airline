@@ -16,19 +16,19 @@ import java.math.BigInteger;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    BigInteger id;
+    private BigInteger id;
     @ManyToOne
     @JoinColumn(name = "person_id")
-    Person person;
+    private Person person;
     @ManyToOne
     @JoinColumn(name = "job_id")
-    Job job;
+    private Job job;
     @ManyToOne
     @JoinColumn(name = "location_id")
-    Location location;
+    private Location location;
     @Column(name = "salary")
-    Integer salary;
+    private Integer salary;
     @ManyToOne
     @JoinColumn(name = "status_id")
-    EmployeeStatus status;
+    private EmployeeStatus status;
 }

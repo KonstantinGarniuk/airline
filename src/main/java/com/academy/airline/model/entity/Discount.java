@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 public class Discount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
     @Column(name = "name")
-    String name;
+    private String name;
     @Column(name = "discount")
-    Integer discount;
+    private Integer discount;
 }

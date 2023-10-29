@@ -17,24 +17,24 @@ import java.sql.Timestamp;
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    BigInteger id;
+    private BigInteger id;
     @ManyToOne
     @JoinColumn(name = "route_id")
-    Route route;
+    private Route route;
     @ManyToOne
     @JoinColumn(name = "airplane_id")
-    Airplane airplane;
+    private Airplane airplane;
     @Column(name = "departure_time")
-    Timestamp departureTime;
+    private Timestamp departureTime;
     @Column(name = "arrival_time")
-    Timestamp arrivalTime;
+    private Timestamp arrivalTime;
     @ManyToOne
     @JoinColumn(name = "departure_gate")
-    Gate departureGate;
+    private Gate departureGate;
     @ManyToOne
     @JoinColumn(name = "arrival_gate")
-    Gate arrivalGate;
+    private Gate arrivalGate;
     @ManyToOne
     @JoinColumn(name = "status_id")
-    FlightStatus status;
+    private FlightStatus status;
 }

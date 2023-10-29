@@ -16,18 +16,18 @@ import java.math.BigInteger;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    BigInteger id;
+    private BigInteger id;
     @ManyToOne
     @JoinColumn(name = "person_id")
-    Person person;
+    private Person person;
     @Column(name = "user_name")
-    String userName;
+    private String userName;
     @Column(name = "password")
-    String password;
+    private String password;
     @ManyToOne
     @JoinColumn(name = "role_id")
-    Role role;
+    private Role role;
     @ManyToOne
     @JoinColumn(name = "discount_id")
-    Discount discount;
+    private Discount discount;
 }

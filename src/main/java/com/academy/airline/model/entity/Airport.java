@@ -16,13 +16,13 @@ import java.util.List;
 public class Airport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
     @Column(name = "name")
-    String name;
+    private String name;
     @ManyToOne
     @JoinColumn(name = "location_id")
-    Location location;
+    private Location location;
     @OneToMany
     @JoinColumn(name = "airport_id")
-    List<Gate> gates;
+    private List<Gate> gates;
 }

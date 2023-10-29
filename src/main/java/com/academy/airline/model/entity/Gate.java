@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Gate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
     @Column(name = "name")
-    String name;
+    private String name;
 }

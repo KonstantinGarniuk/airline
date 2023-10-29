@@ -16,21 +16,21 @@ import java.math.BigInteger;
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    BigInteger id;
+    private BigInteger id;
     @ManyToOne
     @JoinColumn(name = "account_id")
-    Account account;
+    private Account account;
     @ManyToOne
     @JoinColumn(name = "flight_id")
-    Flight flight;
+    private Flight flight;
     @ManyToOne
     @JoinColumn(name = "seat_id")
-    Seat seat;
+    private Seat seat;
     @Column(name = "luggage")
-    Integer luggage;
+    private Integer luggage;
     @Column(name = "price")
-    Integer price;
+    private Integer price;
     @ManyToOne
     @JoinColumn(name = "status_id")
-    TicketStatus status;
+    private TicketStatus status;
 }

@@ -17,24 +17,24 @@ import java.util.List;
 public class Airplane {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
     @ManyToOne
     @JoinColumn(name = "type_id")
-    AirplaneType type;
+    private AirplaneType type;
     @Column(name = "side_number")
-    String sideNumber;
+    private String sideNumber;
     @ManyToOne
     @JoinColumn(name = "status_id")
-    AirplaneStatus status;
+    private AirplaneStatus status;
     @Column(name = "service_time")
-    LocalDate serviceTime;
+    private LocalDate serviceTime;
     @ManyToOne
     @JoinColumn(name = "location_id")
-    Location location;
+    private Location location;
     @OneToMany
     @JoinColumn(name = "airplane_id")
-    List<Seat> seats;
+    private List<Seat> seats;
     @OneToMany
     @JoinColumn(name = "crew_id")
-    List<Crew> crew;
+    private List<Crew> crew;
 }

@@ -15,13 +15,13 @@ import lombok.NoArgsConstructor;
 public class AirplaneType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
     @Column(name = "first_class_seats")
-    Integer firstClassSeats;
+    private Integer firstClassSeats;
     @Column(name = "economy_class_seats")
-    Integer economyClassSeats;
+    private Integer economyClassSeats;
     @Column(name = "carrying_weight")
-    Integer carryingWeight;
+    private Integer carryingWeight;
     @Column(name = "service_period")
-    Integer servicePeriod;
+    private Integer servicePeriod;
 }

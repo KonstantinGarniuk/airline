@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
     @Column(name = "number")
-    Integer number;
+    private Integer number;
     @ManyToOne
     @JoinColumn(name = "class_id")
-    SeatClass seatClass;
+    private SeatClass seatClass;
 }

@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class CrewJob {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
     @Column(name = "job")
-    String job;
+    private String job;
 }
