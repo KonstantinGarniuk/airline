@@ -1,24 +1,21 @@
 package com.academy.airline.model.entity;
 
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Crew {
+public class CrewJob {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-    @ManyToOne
-    @JoinColumn(name = "crew_job_id")
-    CrewJob job;
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    Employee employee;
+    @Column(name = "job")
+    String job;
 }

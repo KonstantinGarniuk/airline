@@ -18,8 +18,8 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     BigInteger id;
     @ManyToOne
-    @JoinColumn(name = "person_id")
-    Person person;
+    @JoinColumn(name = "account_id")
+    Account account;
     @ManyToOne
     @JoinColumn(name = "flight_id")
     Flight flight;
