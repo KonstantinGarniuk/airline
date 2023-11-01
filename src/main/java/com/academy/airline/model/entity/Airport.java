@@ -22,7 +22,7 @@ public class Airport {
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "airport_id")
     private List<Gate> gates;
 }

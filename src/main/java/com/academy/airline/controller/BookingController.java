@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class BookingController {
     @GetMapping(value = "/booking")
-    String getBooking(Model model) {
+    public String getBooking(Model model) {
         return "Booking";
     }
 }

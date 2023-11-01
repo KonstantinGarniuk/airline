@@ -31,10 +31,10 @@ public class Airplane {
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "airplane_id")
     private List<Seat> seats;
-    @OneToMany
-    @JoinColumn(name = "crew_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "airplane_id")
     private List<Crew> crew;
 }

@@ -14,7 +14,13 @@
     <body>
         <div class="mainContainer">
             <jsp:include page="header.jsp"/>
-            <h1>SCHEDULE PAGE!</h1>
+            <form action="/schedule">
+				<label for="departure">Дата отправления</label>
+				<input type="date" id="departure" name="departure">
+				<label for="arrival">Дата прибытия</label>
+				<input type="date" id="arrival" name="arrival">
+				<input type="submit" value="Принять">
+			</form>
         </div>
     </body>
 </html>

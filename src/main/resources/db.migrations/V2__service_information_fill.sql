@@ -11,12 +11,13 @@ insert into role(role) value ('hr');
 
 insert into job(job) value ('pilot');
 insert into job(job) value ('steward');
+insert into job(job) value ('manager');
 insert into job(job) value ('dispatcher');
 insert into job(job) value ('hr');
 
 insert into employee_status(status) value ('active');
 insert into employee_status(status) value ('rest');
-insert into employee_status(status) value ('ilness');
+insert into employee_status(status) value ('illness');
 insert into employee_status(status) value ('vacation');
 
 insert into seat_class(class) value ('first');

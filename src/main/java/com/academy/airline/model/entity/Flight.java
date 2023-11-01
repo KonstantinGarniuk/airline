@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -25,14 +26,14 @@ public class Flight {
     @JoinColumn(name = "airplane_id")
     private Airplane airplane;
     @Column(name = "departure_time")
-    private Timestamp departureTime;
+    private LocalDateTime departureTime;
     @Column(name = "arrival_time")
-    private Timestamp arrivalTime;
+    private LocalDateTime arrivalTime;
     @ManyToOne
-    @JoinColumn(name = "departure_gate")
+    @JoinColumn(name = "departure_gate_id")
     private Gate departureGate;
     @ManyToOne
-    @JoinColumn(name = "arrival_gate")
+    @JoinColumn(name = "arrival_gate_id")
     private Gate arrivalGate;
     @ManyToOne
     @JoinColumn(name = "status_id")
