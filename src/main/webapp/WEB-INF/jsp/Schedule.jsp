@@ -16,9 +16,9 @@
             <jsp:include page="header.jsp"/>
             <form action="/schedule">
 				<label for="from">Расписание с: </label>
-				<input type="date" id="from" name="from">
+				<input type="datetime-local" id="from" name="from">
 				<label for="to">до: </label>
-				<input type="date" id="to" name="to">
+				<input type="datetime-local" id="to" name="to">
 				<input type="submit" value="Принять">
 			</form>
         </div>

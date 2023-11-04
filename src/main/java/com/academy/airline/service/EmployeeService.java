@@ -4,7 +4,6 @@ import com.academy.airline.model.entity.Employee;
 import com.academy.airline.model.entity.EmployeeStatus;
 import com.academy.airline.model.entity.Job;
 import com.academy.airline.model.entity.Location;
-import com.academy.airline.model.repository.EmployeeRepository;
 
 import java.math.BigInteger;
 import java.util.List;

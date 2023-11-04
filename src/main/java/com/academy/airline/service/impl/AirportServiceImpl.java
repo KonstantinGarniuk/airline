@@ -4,21 +4,18 @@ import com.academy.airline.model.entity.Airport;
 import com.academy.airline.model.entity.Location;
 import com.academy.airline.model.repository.AirportRepository;
 import com.academy.airline.service.AirportService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AirportServiceImpl extends DefaultServiceImpl<Airport, Integer> implements AirportService {
-    private AirportRepository airportRepository;
-    @Autowired
-    public AirportServiceImpl(AirportRepository airportRepository) {
-        this.repository = airportRepository;
-        this.airportRepository = airportRepository;
-    }
+    private final AirportRepository airportRepository;
+
     @Override
     public List<Airport> getByName(String name) {
         return airportRepository.findByName(name);

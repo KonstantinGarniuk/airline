@@ -3,7 +3,6 @@ package com.academy.airline.service;
 import com.academy.airline.model.entity.Account;
 import com.academy.airline.model.entity.Discount;
 import com.academy.airline.model.entity.Role;
-import com.academy.airline.model.repository.AccountRepository;
 
 import java.math.BigInteger;
 

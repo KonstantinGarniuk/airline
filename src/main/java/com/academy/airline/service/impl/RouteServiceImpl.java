@@ -1,27 +1,20 @@
 package com.academy.airline.service.impl;
 
 import com.academy.airline.model.entity.Airport;
-import com.academy.airline.model.entity.Location;
 import com.academy.airline.model.entity.Route;
 import com.academy.airline.model.repository.RouteRepository;
 import com.academy.airline.service.RouteService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.util.List;
-import java.util.function.BiConsumer;
 
 @Service
+@RequiredArgsConstructor
 public class RouteServiceImpl extends DefaultServiceImpl<Route, Integer> implements RouteService {
-    private RouteRepository routeRepository;
-    @Autowired
-    public RouteServiceImpl(RouteRepository routeRepository) {
-        this.repository = routeRepository;
-        this.routeRepository = routeRepository;
-    }
+    private final RouteRepository routeRepository;
 
     @Override
     public List<Route> getByDepartureAirport(Airport airport) {

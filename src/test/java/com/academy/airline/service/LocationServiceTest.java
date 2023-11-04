@@ -1,6 +1,5 @@
 package com.academy.airline.service;
 
-import com.academy.airline.model.entity.Airport;
 import com.academy.airline.model.entity.Location;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;

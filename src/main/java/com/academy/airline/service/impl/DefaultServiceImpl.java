@@ -1,13 +1,13 @@
 package com.academy.airline.service.impl;
 
 import com.academy.airline.service.DefaultService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 public class DefaultServiceImpl<T, I> implements DefaultService<T, I> {
-    JpaRepository<T,I> repository;
+    private JpaRepository<T,I> repository;
 
     @Override
     public List<T> getAll() {

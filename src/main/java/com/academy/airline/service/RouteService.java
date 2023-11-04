@@ -2,7 +2,6 @@ package com.academy.airline.service;
 
 import com.academy.airline.model.entity.Airport;
 import com.academy.airline.model.entity.Route;
-import com.academy.airline.model.repository.RouteRepository;
 
 import java.util.List;
 

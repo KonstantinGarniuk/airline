@@ -8,23 +8,20 @@ import java.util.Random;
 
 import com.academy.airline.model.entity.*;
 import com.academy.airline.model.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 //@Component
 public class PrepareTestData {
 
-	private PersonRepository personRepository;
-	private AccountRepository accountRepository;
-	private LocationRepository locationRepository;
-	private EmployeeRepository employeeRepository;
-	private AirplaneRepository airplaneRepository;
-	private AirportRepository airportRepository;
-	private RouteRepository routeRepository;
-	private FlightRepository flightRepository;
-	private TicketRepository ticketRepository;
+	private final PersonRepository personRepository;
+	private final AccountRepository accountRepository;
+	private final LocationRepository locationRepository;
+	private final EmployeeRepository employeeRepository;
+	private final AirplaneRepository airplaneRepository;
+	private final AirportRepository airportRepository;
+	private final RouteRepository routeRepository;
+	private final FlightRepository flightRepository;
+	private final TicketRepository ticketRepository;
+	
 	private List<Airport> airports;
-
 	private List<Person> people;
 	private List<Location> locations;
 	private List<Account> accounts;
@@ -34,8 +31,7 @@ public class PrepareTestData {
 	private List<Flight> flights;
 	private List<Ticket> tickets;
 
-	@Autowired
-	public void PrepareTestData(
+	public PrepareTestData (
 			PersonRepository personRepository,
 			AccountRepository accountRepository,
 			LocationRepository locationRepository,
