@@ -15,12 +15,19 @@
         <div class="mainContainer">
             <jsp:include page="header.jsp"/>
             <form action="/schedule">
-				<label for="departure">Дата отправления</label>
-				<input type="date" id="departure" name="departure">
-				<label for="arrival">Дата прибытия</label>
-				<input type="date" id="arrival" name="arrival">
+				<label for="from">Расписание с: </label>
+				<input type="date" id="from" name="from">
+				<label for="to">до: </label>
+				<input type="date" id="to" name="to">
 				<input type="submit" value="Принять">
 			</form>
+        </div>
+        <div>
+            <c:forEach items="${flights}" var="flight">
+                ${flight.departureAirport} - ${flight.departureTime} - ${flight.departureGate} |
+                ${flight.arrivalAirport} - ${flight.arrivalTime} - ${flight.arrivalGate} |
+                ${flight.status} <br>
+            </c:forEach>
         </div>
     </body>
 </html>

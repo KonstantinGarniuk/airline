@@ -4,5 +4,5 @@ import com.academy.airline.dto.FlightDto;
 import java.util.List;
 
 public interface FlightService {
-    List<FlightDto> getFlights(String departureTime, String arrivalTime);
+    List<FlightDto> getFlights(String from, String to);
 }

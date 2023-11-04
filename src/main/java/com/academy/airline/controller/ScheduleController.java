@@ -1,17 +1,22 @@
 package com.academy.airline.controller;
 
+import java.util.List;
 import java.util.Map;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
+
+import com.academy.airline.dto.FlightDto;
+import com.academy.airline.service.FlightService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequiredArgsConstructor
 public class ScheduleController {
+    private final FlightService flightService;
+
     @GetMapping(value = "/schedule")
     public String getSchedule(Model model, @RequestParam Map<String,String> params) {
         /* TODO
@@ -20,25 +25,8 @@ public class ScheduleController {
         * if selected show all flights with departure time between start and end time
         * if not selected show all flights with arrival time isn't come yet and departure time is less then +2 days from now
         * */
-		System.out.println("Departure time is" + params.get("departure"));
-		LocalDateTime departureTime = LocalDateTime.now();
-		if(params.get("departure") != null) {
-			try {
-				departureTime = LocalDate.parse(params.get("departure")).atStartOfDay();
-			} catch (DateTimeParseException e) {
-				System.out.println("Cannot parse departure time. Set to now.");
-			}
-		} else {
-			System.out.println("Departure time is null. Set to now.");
-		}
-		System.out.println(departureTime.toString());
-		
-		//System.out.println(params.get("arrival"));
-		//if(!params.get("arrival").isEmpty()) {
-		//	LocalDateTime arrivalTime = LocalDate.parse(params.get("arrival")).atTime(23,59);
-		//	System.out.println(arrivalTime.toString());
-		//}
-
+        List<FlightDto> flights = flightService.getFlights(params.get("from"), params.get("to"));
+        model.addAttribute("flights", flights);
         return "Schedule";
     }
 }
