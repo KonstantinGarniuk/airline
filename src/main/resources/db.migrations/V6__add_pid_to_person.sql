@@ -1,0 +1,1 @@
+alter table person add column pid varchar(128) not null unique; 

@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -23,16 +24,15 @@ public class ScheduleController {
 
     @GetMapping(value = "/schedule")
     public String getSchedule(Model model, @RequestParam(required = false) Map<String,String> params) {
-        /* TODO
-        * two date inputs and submit button
-        * check for selected start and end time
-        * if selected show all flights with departure time between start and end time
-        * if not selected show all flights with arrival time isn't come yet and departure time is less then +1 days from now
-        * */
         LocalDateTime from = DateTimeValidator.validateTime(params.get("from"), LocalDate.now().atStartOfDay());
         LocalDateTime to = DateTimeValidator.validateTime(params.get("to"), from.plusDays(1));
         List<FlightDto> flights = flightService.getFlights(from, to);
         model.addAttribute("flights", flights);
+        return "Schedule";
+    }
+
+    @PostMapping(value = "/scedule")
+    public String setFlightInfo(Model model) {
         return "Schedule";
     }
 }

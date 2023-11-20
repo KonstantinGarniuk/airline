@@ -1,33 +1,89 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>Gremlin Air Lines</title>
-        <link rel="shortcut icon" href="images/logo.ico">
-        <link rel="stylesheet"    href="css/mainStyle.css">
-
-        <script src="js/pageCtrl.js" defer></script>
+        <jsp:include page="common/head.jsp"/>
+        <link rel="stylesheet" href="css/schedule.css">
     </head>
     <body>
-        <div class="mainContainer">
-            <jsp:include page="header.jsp"/>
-            <form action="/schedule">
-				<label for="from">Расписание с: </label>
-				<input type="datetime-local" id="from" name="from">
-				<label for="to">до: </label>
-				<input type="datetime-local" id="to" name="to">
-				<input type="submit" value="Принять">
-			</form>
-        </div>
-        <div>
+        <jsp:include page="common/header.jsp"/>
+        <form action="/schedule">
+            <table class="scheduleForm">
+                <tr>
+                    <th>
+                        <label for="from">Расписание с: </label>
+                        <input type="datetime-local" name="from">
+                    </th>
+                    <th>
+                        <label for="to">до: </label>
+                        <input type="datetime-local" id="to" name="to">
+                    </th>
+                    <th>
+                        <input type="submit" value="Принять">
+                    </th>
+                </tr>
+            </table>
+        </form>
+        <table class="schedule">
+            <thead>
+                <th>Departure airport</th>
+                <th>Departure time</th>
+                <th>Departure gate</th>
+                <th>Arrival airport</th>
+                <th>Arrival time</th>
+                <th>Arrival gate</th>
+                <th>Status</th>
+            </thead>
             <c:forEach items="${flights}" var="flight">
-                ${flight.departureAirport} - ${flight.departureTime} - ${flight.departureGate} |
-                ${flight.arrivalAirport} - ${flight.arrivalTime} - ${flight.arrivalGate} |
-                ${flight.status} <br>
+                <tr class="flightInfo">
+                    <th>
+                        ${flight.departureAirport}
+                    </th>
+                    <th>
+                        ${flight.departureTime}
+                    </th>
+                    <th>
+                        <sec:authorize access="hasRole('DISPATCHER')">
+                            <input class="gateInput" list="departureGates">
+                            <datalist id="departureGates">
+                                <c:forEach items="${flight.availableDepartureGates}" var="departureGate">
+                                    <option value="${departureGate}">
+                                </c:forEach>
+                            </datalist> 
+                        </sec:authorize>
+                        <sec:authorize access="!hasRole('DISPATCHER')">
+                            ${flight.departureGate}
+                        </sec:authorize>
+                    </th>
+                    <th>
+                        ${flight.arrivalAirport}
+                    </th>
+                    <th>
+                        ${flight.arrivalTime}
+                    </th>
+                    <th>
+                        <sec:authorize access="hasRole('DISPATCHER')">
+                            <input input class="gateInput" list="arrivalGates">
+                            <datalist id="arrivalGates">
+                                <c:forEach items="${flight.availableArrivalGates}" var="arrivalGate">
+                                    <option value="${arrivalGate}">
+                                </c:forEach>
+                            </datalist> 
+                        </sec:authorize>
+                        <sec:authorize access="!hasRole('DISPATCHER')">
+                            ${flight.arrivalGate}
+                        </sec:authorize>
+                    </th>
+                    <th>
+                        ${flight.status}
+                    </th>
+                    <th>
+                        ${flight.arrivalGate}
+                    </th>
+                </tr>
             </c:forEach>
-        </div>
+        </table>
     </body>
 </html>

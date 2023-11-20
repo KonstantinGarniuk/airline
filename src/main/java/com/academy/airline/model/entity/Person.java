@@ -1,6 +1,6 @@
 package com.academy.airline.model.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,4 +24,6 @@ public class Person {
     private String lastName;
     @Column(name = "dob")
     private LocalDate dob;
+    @Column(name = "pid")
+    private String pid;
 }

@@ -3,11 +3,17 @@ package com.academy.airline.util;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.stereotype.Component;
 
 import com.academy.airline.model.entity.*;
 import com.academy.airline.model.repository.*;
+
 //@Component
 public class PrepareTestData {
 
@@ -20,6 +26,7 @@ public class PrepareTestData {
 	private final RouteRepository routeRepository;
 	private final FlightRepository flightRepository;
 	private final TicketRepository ticketRepository;
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	private List<Airport> airports;
 	private List<Person> people;
@@ -40,7 +47,8 @@ public class PrepareTestData {
 			AirportRepository airportRepository,
 			RouteRepository routeRepository,
 			FlightRepository flightRepository,
-			TicketRepository ticketRepository
+			TicketRepository ticketRepository,
+			BCryptPasswordEncoder bCryptPasswordEncoder
 		) {
 		this.personRepository = personRepository;
 		this.accountRepository = accountRepository;
@@ -51,6 +59,7 @@ public class PrepareTestData {
 		this.routeRepository = routeRepository;
 		this.flightRepository = flightRepository;
 		this.ticketRepository = ticketRepository;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 
 		prepareTestPeople();
 		prepareTestAccounts();
@@ -71,35 +80,37 @@ public class PrepareTestData {
 								.firstName("PersonTestName" + i)
 								.lastName("PersonTestLastName" + i)
 								.dob(LocalDate.of(1980 + random.nextInt(20), 1 + random.nextInt(11), 1 + random.nextInt(25)))
+								.pid("testId" + random.nextInt(1000000))
 								.build();
 			people.add(person);
 		}
 		personRepository.saveAllAndFlush(people);
 	}
+
 	private void prepareTestAccounts() {
 		accounts = new ArrayList<>();
 		Random random = new Random();
 		Account account = Account.builder()
 								.person(people.get(0))
 								.userName("TestManager")
-								.password("manager")
-								.role(Role.builder().id(2).build())
+								.password(bCryptPasswordEncoder.encode("manager"))
+								.role(Role.builder().id(6).build())
 								.discount(Discount.builder().id(1 + random.nextInt(4)).build())
 								.build();
 		accounts.add(account);								
 		account = Account.builder()
 						.person(people.get(1))
 						.userName("TestDispatcher")
-						.password("dispatcher")
-						.role(Role.builder().id(3).build())
+						.password(bCryptPasswordEncoder.encode("dispatcher"))
+						.role(Role.builder().id(7).build())
 						.discount(Discount.builder().id(1 + random.nextInt(4)).build())
 						.build();
 		accounts.add(account);
 		account = Account.builder()
 						.person(people.get(4))
 						.userName("TestHr")
-						.password("hr")
-						.role(Role.builder().id(2).build())
+						.password(bCryptPasswordEncoder.encode("hr"))
+						.role(Role.builder().id(8).build())
 						.discount(Discount.builder().id(1 + random.nextInt(4)).build())
 						.build();
 		accounts.add(account);
@@ -107,8 +118,8 @@ public class PrepareTestData {
 			 account = Account.builder()
 							.person(people.get(i))
 							.userName("TestAccount" + i)
-							.password("testPass" + i)
-							.role(Role.builder().id(1).build())
+							.password(bCryptPasswordEncoder.encode("testPass" + i))
+							.role(Role.builder().id(5).build())
 							.discount(Discount.builder().id(1 + random.nextInt(4)).build())
 							.build();
 			accounts.add(account);			
@@ -232,7 +243,7 @@ public class PrepareTestData {
 		airports = new ArrayList<>();
 		int i = 0;
 		for (Location location: locations) {
-			List<Gate> gates = new ArrayList<>();
+			Set<Gate> gates = new HashSet<>();
 			Airport airport = Airport.builder()
 					.name("TestAirport" + i)
 					.location(location)

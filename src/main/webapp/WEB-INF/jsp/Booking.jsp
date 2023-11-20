@@ -1,19 +1,15 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>Gremlin Air Lines</title>
-        <link rel="shortcut icon" href="images/logo.ico">
-        <link rel="stylesheet"    href="css/mainStyle.css">
-
-        <script src="js/pageCtrl.js" defer></script>
+        <jsp:include page="common/head.jsp"/>
+        <link rel="stylesheet" href="css/booking.css">
     </head>
     <body>
         <div class="mainContainer">
-            <jsp:include page="header.jsp"/>
+            <jsp:include page="common/header.jsp"/>
             <h1>BOOKING PAGE!</h1>
         </div>
     </body>

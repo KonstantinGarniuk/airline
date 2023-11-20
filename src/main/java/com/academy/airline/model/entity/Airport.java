@@ -1,12 +1,13 @@
 package com.academy.airline.model.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
+
 
 @Data
 @Builder
@@ -24,5 +25,5 @@ public class Airport {
     private Location location;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "airport_id")
-    private List<Gate> gates;
+    private Set<Gate> gates;
 }

@@ -26,12 +26,12 @@ public class DefaultServiceImpl<T, I> implements DefaultService<T, I> {
 
     @Override
     public void save(T entity) {
-        repository.saveAndFlush(entity);
+        repository.save(entity);
     }
 
     @Override
     public void saveAll(List<T> entities) {
-        repository.saveAllAndFlush(entities);
+        repository.saveAll(entities);
     }
 
     @Override
