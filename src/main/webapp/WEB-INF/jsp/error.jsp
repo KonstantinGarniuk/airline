@@ -11,6 +11,10 @@
 <body class="page">
     <jsp:include page="common/header.jsp"/>
     <h2 class="error">Something gone wrong!</h2>
+    <!-- <p class="error">
+        Failed URL: ${url} <br>
+        Exception:  ${exception}
+    </p> -->
 
 </body>
 </html>

@@ -30,6 +30,7 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain fillterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         return http
+            //.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests((auth) -> auth
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/booking")).hasAnyRole("DISPATCHER", "MANAGER")
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/schedule")).authenticated()

@@ -6,6 +6,7 @@
     <head>
         <jsp:include page="common/head.jsp"/>
         <link rel="stylesheet" href="css/schedule.css">
+        <script src="js/schedule.js" defer></script>
     </head>
     <body>
         <jsp:include page="common/header.jsp"/>
@@ -46,7 +47,7 @@
                     </th>
                     <th>
                         <sec:authorize access="hasRole('DISPATCHER')">
-                            <input class="gateInput" list="departureGates">
+                            <input class="gateInput" list="departureGates" value="${flight.departureGate}" onchange="setDepartureGate('${flight.id}', '${_csrf.token}')">
                             <datalist id="departureGates">
                                 <c:forEach items="${flight.availableDepartureGates}" var="departureGate">
                                     <option value="${departureGate}">
@@ -65,7 +66,7 @@
                     </th>
                     <th>
                         <sec:authorize access="hasRole('DISPATCHER')">
-                            <input input class="gateInput" list="arrivalGates">
+                            <input input class="gateInput" list="arrivalGates" value="${flight.arrivalGate}" onchange="setArrivalGate('${flight.id}', '${_csrf.token}')">
                             <datalist id="arrivalGates">
                                 <c:forEach items="${flight.availableArrivalGates}" var="arrivalGate">
                                     <option value="${arrivalGate}">
