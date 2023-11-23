@@ -1,6 +1,5 @@
 package com.academy.airline.controller;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,19 +32,12 @@ public class ScheduleController {
         LocalDateTime to = DateTimeValidator.validateTime(params.get("to"), from.plusDays(1));
         List<FlightDto> flights = flightService.getFlights(from, to);
         model.addAttribute("flights", flights);
+        model.addAttribute("gatesInfo", new GatesDto());
         return "Schedule";
     }
 
     @PostMapping(value = "/schedule")
-    // public String setFlightInfo(@RequestParam GatesDto gatesInfo) {
-    public String setFlightInfo(@RequestParam(required = false) String departureGate, 
-                                @RequestParam(required = false) String arrivalGate, 
-                                @RequestParam BigInteger flightId) {
-        GatesDto gatesInfo = GatesDto.builder()
-                            .departureGate(departureGate) 
-                            .arrivalGate(arrivalGate)
-                            .flightId(flightId)
-                            .build();
+    public String setFlightInfo(@ModelAttribute GatesDto gatesInfo) {
         gateSetupService.updateGates(gatesInfo);
         return "Schedule";
     }
