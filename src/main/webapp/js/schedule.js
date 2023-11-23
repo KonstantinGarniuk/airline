@@ -1,12 +1,12 @@
 
 
 function setDepartureGate(flightId, csrf) {
-    var params = new URLSearchParams();
-    // params.set('gatesInfo', ({
+    var params = new FormData();
+    // params.set('gatesInfo', {
     //     departureGate: event.target.value,
     //     arrivalGate: null,
     //     flightId: flightId
-    // }));
+    // });
     params.set('flightId', flightId);
     params.set('departureGate', event.target.value);
     params.set('arrivalGate', null);

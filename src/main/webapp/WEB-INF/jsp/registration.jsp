@@ -12,7 +12,7 @@
   <jsp:include page="common/header.jsp"/>
   <link rel="stylesheet" href="css/registration.css">
   <div>
-    <sf:form action="/registration" method='POST'>
+    <sf:form action="/registration" method='POST' modelAttribute="createAccount">
       <!-- <c:if test="${params.error}">
         <div>ERROR</div>
       </c:if>
@@ -24,58 +24,58 @@
         <table class="registration">
             <tr>
                 <th>
-                    <label>Логин: </label>
+                    <sf:label path="userName">Логин: </sf:label>
                 </th>
                 <th>
-                    <input name="username" type="text" placeholder="Логин" autofocus="true"/>
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    <label>Имя: </label>
-                </th>
-                <th>
-                    <input name="firstName" type="text" placeholder="Имя"/>
+                    <sf:input path="userName" type="text" placeholder="Логин" autofocus="true"/>
                 </th>
             </tr>
             <tr>
                 <th>
-                    <label>Фамилия: </label>
+                    <sf:label path="firstName">Имя: </sf:label>
                 </th>
                 <th>
-                    <input name="lastName" type="text" placeholder="Фамилия"/>
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    <label>Дата рождения</label>
-                </th>
-                <th>
-                    <input name="dob" type="date"/>
+                    <sf:input path="firstName" type="text" placeholder="Имя"/>
                 </th>
             </tr>
             <tr>
                 <th>
-                    <label>Идентификационный номер: </label>
+                    <sf:label path="lastName">Фамилия: </sf:label>
                 </th>
                 <th>
-                    <input name="pid" type="text" placeholder="Идентификационный номер"/>
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    <label>Пароль: </label>
-                </th>
-                <th>
-                    <input name="password" type="password" placeholder="Пароль"/>
+                    <sf:input path="lastName" type="text" placeholder="Фамилия"/>
                 </th>
             </tr>
             <tr>
                 <th>
-                    <label>Повторите пароль: </label>
+                    <sf:label path="dob">Дата рождения</sf:label>
                 </th>
                 <th>
-                    <input class="registrationInput" name="password" type="password" placeholder="Повторите пароль"/>
+                    <sf:input path="dob" type="date"/>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <sf:label path="pid">Идентификационный номер: </sf:label>
+                </th>
+                <th>
+                    <sf:input path="pid" type="text" placeholder="Идентификационный номер"/>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <sf:label path="password">Пароль: </sf:label>
+                </th>
+                <th>
+                    <sf:input path="password" type="password" placeholder="Пароль"/>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <sf:label path="passwordConfirm">Повторите пароль: </sf:label>
+                </th>
+                <th>
+                    <sf:input path="passwordConfirm" type="password" placeholder="Повторите пароль"/>
                 </th>
             </tr>
         </table>

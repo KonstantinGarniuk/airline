@@ -36,11 +36,10 @@ public class ScheduleController {
     }
 
     @PostMapping(value = "/schedule")
-    //public String setFlightInfo(@RequestParam GatesDto gatesInfo)
+    // public String setFlightInfo(@RequestParam GatesDto gatesInfo) {
     public String setFlightInfo(@RequestParam(required = false) String departureGate, 
                                 @RequestParam(required = false) String arrivalGate, 
                                 @RequestParam BigInteger flightId) {
-        System.out.println("in POST");
         GatesDto gatesInfo = GatesDto.builder()
                             .departureGate(departureGate) 
                             .arrivalGate(arrivalGate)

@@ -1,8 +1,8 @@
 package com.academy.airline.service;
 
-import com.academy.airline.model.entity.Account;
+import com.academy.airline.dto.CreateAccountDto;
 
 
 public interface AccountService {
-    boolean seveAccount(Account account);
+    void seveAccount(CreateAccountDto createAccountDto) throws Exception;
 }
