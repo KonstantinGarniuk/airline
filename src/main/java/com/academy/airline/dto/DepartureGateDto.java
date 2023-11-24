@@ -11,8 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GatesDto {
+public class DepartureGateDto {
     private String departureGate;
-    private String arrivalGate;
     private BigInteger flightId;  
 }

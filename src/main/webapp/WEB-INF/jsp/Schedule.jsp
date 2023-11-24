@@ -47,12 +47,21 @@
                     </th>
                     <th>
                         <sec:authorize access="hasRole('DISPATCHER')">
-                            <input class="gateInput" list="departureGates" value="${flight.departureGate}" onchange="setDepartureGate('${flight.id}', '${_csrf.token}')">
-                            <datalist id="departureGates">
+                            <select class="gateInput" onchange="setDepartureGate('${flight.id}', '${_csrf.token}')">
+                                <c:if test="${flight.departureGate == ''}">
+                                    <option value="null"></option>
+                                </c:if>
                                 <c:forEach items="${flight.availableDepartureGates}" var="departureGate">
-                                    <option value="${departureGate}">
+                                    <c:choose>
+                                        <c:when test="${flight.departureGate == departureGate}">
+                                            <option value="${departureGate}" selected>${departureGate}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="${departureGate}">${departureGate}</option>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:forEach>
-                            </datalist> 
+                            </select>
                         </sec:authorize>
                         <sec:authorize access="!hasRole('DISPATCHER')">
                             ${flight.departureGate}
@@ -66,22 +75,44 @@
                     </th>
                     <th>
                         <sec:authorize access="hasRole('DISPATCHER')">
-                            <input input class="gateInput" list="arrivalGates" value="${flight.arrivalGate}" onchange="setArrivalGate('${flight.id}', '${_csrf.token}')">
-                            <datalist id="arrivalGates">
+                            <select class="gateInput" onchange="setArrivalGate('${flight.id}', '${_csrf.token}')">
+                                <c:if test="${flight.arrivalGate == ''}">
+                                    <option value="null"></option>
+                                </c:if>
                                 <c:forEach items="${flight.availableArrivalGates}" var="arrivalGate">
-                                    <option value="${arrivalGate}">
+                                    <c:choose>
+                                        <c:when test="${flight.arrivalGate == arrivalGate}">
+                                            <option value="${arrivalGate}" selected>${arrivalGate}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="${arrivalGate}">${arrivalGate}</option>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:forEach>
-                            </datalist> 
+                            </select>     
                         </sec:authorize>
                         <sec:authorize access="!hasRole('DISPATCHER')">
                             ${flight.arrivalGate}
                         </sec:authorize>
                     </th>
                     <th>
-                        ${flight.status}
-                    </th>
-                    <th>
-                        ${flight.arrivalGate}
+                        <sec:authorize access="hasRole('DISPATCHER')">
+                            <select class="statusInput" onchange="setFlightStatus('${flight.id}', '${_csrf.token}')">
+                                <c:forEach items="${statuses}" var="status">
+                                    <c:choose>
+                                        <c:when test="${flight.status == status.status}">
+                                            <option value="${flight.status}" selected>${flight.status}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="${status.status}">${status.status}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </select> 
+                        </sec:authorize>
+                        <sec:authorize access="!hasRole('DISPATCHER')">
+                            ${flight.status}
+                        </sec:authorize>
                     </th>
                 </tr>
             </c:forEach>

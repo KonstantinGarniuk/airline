@@ -4,6 +4,7 @@ public enum FlightStatus {
     GETTING_READY("Getting ready"),
     BOARDING("Boarding"),
     IN_MID_COURCE("In mid cource"),
+    LANDED("Landed"),
     LATE("Late"),
     CANCELED("Canceled");
 
