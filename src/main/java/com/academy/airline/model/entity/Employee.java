@@ -28,7 +28,6 @@ public class Employee {
     private Location location;
     @Column(name = "salary")
     private Integer salary;
-    @ManyToOne
-    @JoinColumn(name = "status_id")
+    @Column(name = "status")
     private EmployeeStatus status;
 }

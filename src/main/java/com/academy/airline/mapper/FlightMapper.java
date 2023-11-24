@@ -10,9 +10,9 @@ public class FlightMapper {
 	public static FlightDto mapToFlightDto(Flight flight) {
 		Set<String> departureGates = new HashSet<>();
 		Set<String> arrivalGates = new HashSet<>();
-		flight.getRoute().getDepartureAirport().getGates().forEach(gate -> { departureGates.add(gate.getName()); });
-		flight.getRoute().getArrivalAirport().getGates().forEach(gate -> { arrivalGates.add(gate.getName()); });
-		FlightDto flightDto = FlightDto.builder()
+		flight.getRoute().getDepartureAirport().getGates().forEach(gate -> departureGates.add(gate.getName()));
+		flight.getRoute().getArrivalAirport().getGates().forEach(gate -> arrivalGates.add(gate.getName()));
+		return FlightDto.builder()
 										.id(flight.getId())
 										.departureAirport(flight.getRoute().getDepartureAirport().getName())
 										.departureTime(flight.getDepartureTime().toString())
@@ -24,6 +24,5 @@ public class FlightMapper {
 										.availableDepartureGates(departureGates)
 										.availableArrivalGates(arrivalGates)
 										.build();
-		return flightDto;
 	}
 }

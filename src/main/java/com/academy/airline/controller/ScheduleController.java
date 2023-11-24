@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.academy.airline.dto.FlightDto;
 import com.academy.airline.dto.GatesDto;
+import com.academy.airline.model.entity.FlightStatus;
 import com.academy.airline.service.FlightService;
 import com.academy.airline.service.GateSetupService;
 import com.academy.airline.util.validation.DateTimeValidator;
@@ -33,6 +34,7 @@ public class ScheduleController {
         List<FlightDto> flights = flightService.getFlights(from, to);
         model.addAttribute("flights", flights);
         model.addAttribute("gatesInfo", new GatesDto());
+        model.addAttribute("statuses", FlightStatus.values());
         return "Schedule";
     }
 

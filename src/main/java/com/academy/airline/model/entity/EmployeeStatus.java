@@ -1,21 +1,20 @@
 package com.academy.airline.model.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.academy.airline.model.entity.converter.EnumInfo;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "employee_status")
-public class EmployeeStatus {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "status")
+public enum EmployeeStatus implements EnumInfo {
+    ACTIVE("Active"),
+    REST("Rest"),
+    ILLNESS("Ilness"),
+    VACATION("Vacation");
+
     private String status;
+    private EmployeeStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String getStatus() {
+        return status;
+    }
 }

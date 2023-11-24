@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.stereotype.Component;
 
 import com.academy.airline.model.entity.*;
@@ -26,17 +26,16 @@ public class PrepareTestData {
 	private final RouteRepository routeRepository;
 	private final FlightRepository flightRepository;
 	private final TicketRepository ticketRepository;
-	BCryptPasswordEncoder bCryptPasswordEncoder;
+	PasswordEncoder passwordEncoder;
 	
 	private List<Airport> airports;
 	private List<Person> people;
 	private List<Location> locations;
 	private List<Account> accounts;
-	private List<Employee> employees;
-	private List<Airplane> airplanes;
 	private List<Route> routes;
 	private List<Flight> flights;
-	private List<Ticket> tickets;
+
+	Random random;
 
 	public PrepareTestData (
 			PersonRepository personRepository,
@@ -48,7 +47,7 @@ public class PrepareTestData {
 			RouteRepository routeRepository,
 			FlightRepository flightRepository,
 			TicketRepository ticketRepository,
-			BCryptPasswordEncoder bCryptPasswordEncoder
+			PasswordEncoder passwordEncoder
 		) {
 		this.personRepository = personRepository;
 		this.accountRepository = accountRepository;
@@ -59,7 +58,9 @@ public class PrepareTestData {
 		this.routeRepository = routeRepository;
 		this.flightRepository = flightRepository;
 		this.ticketRepository = ticketRepository;
-		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.passwordEncoder = passwordEncoder;
+		
+		random = new Random();
 
 		prepareTestPeople();
 		prepareTestAccounts();
@@ -74,7 +75,6 @@ public class PrepareTestData {
 
 	private void prepareTestPeople() {
 		people = new ArrayList<>();
-		Random random = new Random();
 		for (int i = 0; i < 100; i++) {
 			Person person = Person.builder()
 								.firstName("PersonTestName" + i)
@@ -86,14 +86,12 @@ public class PrepareTestData {
 		}
 		personRepository.saveAllAndFlush(people);
 	}
-
 	private void prepareTestAccounts() {
 		accounts = new ArrayList<>();
-		Random random = new Random();
 		Account account = Account.builder()
 								.person(people.get(0))
 								.userName("TestManager")
-								.password(bCryptPasswordEncoder.encode("manager"))
+								.password(passwordEncoder.encode("manager"))
 								.role(Role.builder().id(6).build())
 								.discount(Discount.builder().id(1 + random.nextInt(4)).build())
 								.build();
@@ -101,7 +99,7 @@ public class PrepareTestData {
 		account = Account.builder()
 						.person(people.get(1))
 						.userName("TestDispatcher")
-						.password(bCryptPasswordEncoder.encode("dispatcher"))
+						.password(passwordEncoder.encode("dispatcher"))
 						.role(Role.builder().id(7).build())
 						.discount(Discount.builder().id(1 + random.nextInt(4)).build())
 						.build();
@@ -109,7 +107,7 @@ public class PrepareTestData {
 		account = Account.builder()
 						.person(people.get(4))
 						.userName("TestHr")
-						.password(bCryptPasswordEncoder.encode("hr"))
+						.password(passwordEncoder.encode("hr"))
 						.role(Role.builder().id(8).build())
 						.discount(Discount.builder().id(1 + random.nextInt(4)).build())
 						.build();
@@ -118,7 +116,7 @@ public class PrepareTestData {
 			 account = Account.builder()
 							.person(people.get(i))
 							.userName("TestAccount" + i)
-							.password(bCryptPasswordEncoder.encode("testPass" + i))
+							.password(passwordEncoder.encode("testPass" + i))
 							.role(Role.builder().id(5).build())
 							.discount(Discount.builder().id(1 + random.nextInt(4)).build())
 							.build();
@@ -140,15 +138,14 @@ public class PrepareTestData {
 		locationRepository.saveAllAndFlush(locations);
 	}
 	private void prepareEmployees() {
-		Random random = new Random();
-		employees = new ArrayList<>();
+		List<Employee> employees = new ArrayList<>();
 
 		Employee employee = Employee.builder()
 									.person(people.get(0))
 									.job(Job.builder().id(3).build())
 									.location(locations.get(random.nextInt(locations.size() - 1)))
 									.salary(300 + random.nextInt(500))
-									.status(EmployeeStatus.builder().id(1).build())
+									.status(EmployeeStatus.ACTIVE)
 									.build();
 		employees.add(employee);
 		employee = Employee.builder()
@@ -156,7 +153,7 @@ public class PrepareTestData {
 						.job(Job.builder().id(4).build())
 						.location(locations.get(random.nextInt(locations.size() - 1)))
 						.salary(300 + random.nextInt(500))
-						.status(EmployeeStatus.builder().id(1).build())
+						.status(EmployeeStatus.ACTIVE)
 						.build();
 		employees.add(employee);
 		employee = Employee.builder()
@@ -164,7 +161,7 @@ public class PrepareTestData {
 						.job(Job.builder().id(5).build())
 						.location(locations.get(random.nextInt(locations.size() - 1)))
 						.salary(300 + random.nextInt(500))
-						.status(EmployeeStatus.builder().id(1).build())
+						.status(EmployeeStatus.ACTIVE)
 						.build();
 		employees.add(employee);
 		for (int i = 0; i < 10; i++) {
@@ -173,7 +170,7 @@ public class PrepareTestData {
 								.job(Job.builder().id(1).build())
 								.location(locations.get(random.nextInt(locations.size() - 1)))
 								.salary(700 + random.nextInt(700))
-								.status(EmployeeStatus.builder().id(1).build())
+								.status(EmployeeStatus.ACTIVE)
 								.build();
 			employees.add(employee);
 		}
@@ -183,27 +180,26 @@ public class PrepareTestData {
 								.job(Job.builder().id(2).build())
 								.location(locations.get(random.nextInt(locations.size() - 1)))
 								.salary(300 + random.nextInt(500))
-								.status(EmployeeStatus.builder().id(1).build())
+								.status(EmployeeStatus.ACTIVE)
 								.build();
 			employees.add(employee);
 		}
 		employeeRepository.saveAllAndFlush(employees);
 	}
 	private void prepareAirplanes() {
-		airplanes = new ArrayList<>();
-		Random random = new Random();
+		List<Airplane> airplanes = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
 			List<Seat> seats = new ArrayList<>();
 			Airplane airplane = Airplane.builder()
 										.type(AirplaneType.builder().id(random.nextInt(3) + 1).build())
 										.sideNumber("S" + i)
-										.status(AirplaneStatus.builder().id(1).build())
+										.status(AirplaneStatus.READY)
 										.serviceTime(LocalDate.now())
 										.location(locations.get(random.nextInt(20)))
 										.build();
 			for (int j = 0; j < 50; j++) {
 				Seat seat = Seat.builder()
-								.seatClass(SeatClass.builder().id(2).build())
+								.seatClass(SeatClass.ECONOMY)
 								.number(j)
 								.build();
 				seats.add(seat);
@@ -272,14 +268,13 @@ public class PrepareTestData {
 	private void prepareFlights() {
 		flights = new ArrayList<>();
 		LocalDateTime timeOfFlight = LocalDateTime.now();
-		Random random = new Random();
 		for (Route route: routes) {
 			for (int i = 0; i < 10; i++) {
 				Flight flight = Flight.builder()
 						.route(route)
 						.departureTime(timeOfFlight)
 						.arrivalTime(timeOfFlight.plusHours(random.nextInt(20)))
-						.status(FlightStatus.builder().id(1).build())
+						.status(FlightStatus.GETTING_READY)
 						.build();
 				flights.add(flight);
 				timeOfFlight = timeOfFlight.plusMinutes(10 + random.nextInt(30));
@@ -288,14 +283,13 @@ public class PrepareTestData {
 		flightRepository.saveAllAndFlush(flights);
 	}
 	private void prepareTickets() {
-		tickets = new ArrayList<>();
-		Random random = new Random();
+		List<Ticket> tickets = new ArrayList<>();
 		for (int i = 0; i < 100; i++) {
 			Ticket ticket = Ticket.builder()
 					.account(accounts.get(random.nextInt(accounts.size() - 1)))
 					.flight(flights.get(random.nextInt(flights.size() - 1)))
 					.luggage(25)
-					.status(TicketStatus.builder().id(1).build())
+					.status(TicketStatus.BOOKED)
 					.build();
 			tickets.add(ticket);
 		}

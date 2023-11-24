@@ -1,22 +1,19 @@
 package com.academy.airline.model.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public enum TicketStatus {
+    BOOKED("Booked"),
+    PAID("Paid"),
+    USED("Used"),
+    CANCELED("Canceled");
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "ticket_status")
-public class TicketStatus {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "status")
     private String status;
+    private TicketStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
 }
 

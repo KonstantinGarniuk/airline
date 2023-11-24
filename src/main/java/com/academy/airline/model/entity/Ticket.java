@@ -30,7 +30,6 @@ public class Ticket {
     private Integer luggage;
     @Column(name = "price")
     private Integer price;
-    @ManyToOne
-    @JoinColumn(name = "status_id")
+    @Column(name = "status")
     private TicketStatus status;
 }

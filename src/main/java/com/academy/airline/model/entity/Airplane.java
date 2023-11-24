@@ -23,8 +23,7 @@ public class Airplane {
     private AirplaneType type;
     @Column(name = "side_number")
     private String sideNumber;
-    @ManyToOne
-    @JoinColumn(name = "status_id")
+    @Column(name = "status")
     private AirplaneStatus status;
     @Column(name = "service_time")
     private LocalDate serviceTime;

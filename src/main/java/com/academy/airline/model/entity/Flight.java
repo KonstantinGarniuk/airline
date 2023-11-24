@@ -34,7 +34,7 @@ public class Flight {
     @ManyToOne
     @JoinColumn(name = "arrival_gate_id")
     private Gate arrivalGate;
-    @ManyToOne
-    @JoinColumn(name = "status_id")
+    
+    @Column(name = "status")
     private FlightStatus status;
 }
