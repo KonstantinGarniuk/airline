@@ -36,5 +36,6 @@ public class Flight {
     private Gate arrivalGate;
     
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private FlightStatus status;
 }

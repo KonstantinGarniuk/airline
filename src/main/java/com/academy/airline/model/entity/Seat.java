@@ -18,5 +18,6 @@ public class Seat {
     @Column(name = "number")
     private Integer number;
     @Column(name = "seat_class")
+    @Enumerated(EnumType.STRING)
     private SeatClass seatClass;
 }

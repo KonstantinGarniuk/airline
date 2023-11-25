@@ -28,6 +28,8 @@ public class Employee {
     private Location location;
     @Column(name = "salary")
     private Integer salary;
+
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private EmployeeStatus status;
 }

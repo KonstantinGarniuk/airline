@@ -31,8 +31,8 @@ public class SpringSecurityConfig {
     public SecurityFilterChain fillterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         return http
             .authorizeHttpRequests((auth) -> auth
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/booking")).hasAnyRole("DISPATCHER", "MANAGER")
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/schedule")).authenticated()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/booking")).authenticated()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/charter")).authenticated()
                 .anyRequest().permitAll()
             )
             .formLogin((form) -> form

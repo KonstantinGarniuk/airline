@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CharterController {
     @GetMapping(value = "/charter")
     public String charterOrdering(Model model) {
-        return "/Charter";
+        return "Charter";
     }
 }

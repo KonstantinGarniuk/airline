@@ -24,6 +24,7 @@ public class Airplane {
     @Column(name = "side_number")
     private String sideNumber;
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private AirplaneStatus status;
     @Column(name = "service_time")
     private LocalDate serviceTime;

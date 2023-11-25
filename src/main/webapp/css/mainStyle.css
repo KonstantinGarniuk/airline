@@ -10,6 +10,11 @@ html, body {
 
 body {
 	height: 100%;
+	color: green;
+	font-family: 'Courier New', Courier, monospace;
+	text-align: center;
+	font-weight: 900;
+	font-size: calc(15px + 16 * (100vw / 1280));
 	background-color: lightblue;
 	background-image: url("../images/background.jpg");
 	background-repeat: no-repeat;

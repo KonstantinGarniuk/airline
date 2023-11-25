@@ -1,8 +1,6 @@
 package com.academy.airline.model.entity;
 
-import com.academy.airline.model.entity.converter.EnumInfo;
-
-public enum EmployeeStatus implements EnumInfo {
+public enum EmployeeStatus {
     ACTIVE("Active"),
     REST("Rest"),
     ILLNESS("Illness"),
@@ -13,7 +11,6 @@ public enum EmployeeStatus implements EnumInfo {
         this.status = status;
     }
 
-    @Override
     public String getStatus() {
         return status;
     }

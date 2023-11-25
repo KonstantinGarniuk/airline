@@ -13,12 +13,6 @@
   <link rel="stylesheet" href="css/registration.css">
   <div>
     <sf:form action="/registration" method='POST' modelAttribute="createAccount">
-      <!-- <c:if test="${params.error}">
-        <div>ERROR</div>
-      </c:if>
-      <c:if test="${params.logout}">
-        <div>LOGOUT SUCSSESFULL</div>
-      </c:if> -->
       
         <h2>Регистрация пользователя</h2>
         <table class="registration">

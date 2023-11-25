@@ -3,6 +3,7 @@ package com.academy.airline.service.impl;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import com.academy.airline.mapper.FlightMapper;
 import com.academy.airline.model.entity.Airplane;
@@ -10,7 +11,6 @@ import com.academy.airline.model.entity.Airport;
 import com.academy.airline.model.entity.Flight;
 import com.academy.airline.model.entity.FlightStatus;
 import com.academy.airline.model.entity.Location;
-import com.academy.airline.model.entity.converter.FlightStatusConverter;
 
 import org.springframework.stereotype.Service;
 
@@ -77,14 +77,19 @@ public class FlightServiceImpl implements FlightService {
 	public void updateStatus(FlightStatusDto status) {
 		Flight flight = flightRepository.getReferenceById(status.getFlightId());
 		if (status.getFlightStatus() != null) {
-			FlightStatus flightStatus = new FlightStatusConverter().convertToEntityAttribute(status.getFlightStatus());
+			FlightStatus flightStatus = Stream.of(FlightStatus.values())
+											.filter(s -> s.getStatus().equals(status.getFlightStatus()))
+											.findFirst()
+											.orElseThrow(IllegalArgumentException::new);
 			flight.setStatus(flightStatus);
 			if (flightStatus == FlightStatus.LANDED) {
 				Location location = flight.getRoute().getArrivalAirport().getLocation();
 				Airplane airplane = flight.getAirplane();
-				airplane.setLocation(location);
-				airplaneRepository.save(airplane);
-				employeeService.updateLocation(airplane.getCrew(), location);
+				if(airplane != null) {
+					airplane.setLocation(location);
+					airplaneRepository.save(airplane);
+					employeeService.updateLocation(airplane.getCrew(), location);
+				}
 				
 			}
 			flightRepository.save(flight);

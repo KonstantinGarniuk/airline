@@ -31,5 +31,6 @@ public class Ticket {
     @Column(name = "price")
     private Integer price;
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private TicketStatus status;
 }
