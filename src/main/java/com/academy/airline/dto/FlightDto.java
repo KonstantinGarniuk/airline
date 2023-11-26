@@ -19,5 +19,4 @@ public class FlightDto {
 	private String arrivalGate;
 	private Set<String> availableArrivalGates;
 	private String status;
-	private Integer price;
 }

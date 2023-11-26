@@ -4,7 +4,8 @@
     <table class="top">
         <tr>
             <th>
-                <div onclick="showMainPage()"><img class="logo" src="/images/header.jpg"/></div>
+                <c:url var="headerUrl" value="/images/header.jpg" context="/"/>
+                <div onclick="showMainPage()"><img class="logo" src="${headerUrl}" alt="logo"/></div>
             </th>
             <th>
                 <div class="greetings"          onclick="showMainPage()"    >Добро пожаловать в Gremlin Air Lines</div>

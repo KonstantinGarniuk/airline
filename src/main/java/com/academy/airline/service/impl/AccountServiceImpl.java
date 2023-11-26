@@ -6,9 +6,9 @@ import com.academy.airline.dto.CreateAccountDto;
 import com.academy.airline.mapper.CreateAccountMapper;
 import com.academy.airline.model.entity.Account;
 import com.academy.airline.model.entity.Person;
+import com.academy.airline.model.entity.Role;
 import com.academy.airline.model.repository.AccountRepository;
 import com.academy.airline.model.repository.PersonRepository;
-import com.academy.airline.model.repository.RoleRepository;
 import com.academy.airline.service.AccountService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
-    private final RoleRepository roleRepository;
     private final PersonRepository personRepository;
 
     @Override
@@ -40,7 +39,7 @@ public class AccountServiceImpl implements AccountService {
                 throw new Exception("Person exists, but first or last name is wrong");
             }
         }
-        
+        account.setRole(Role.builder().id(1).build());
         account.setPerson(personFromDb);
         accountRepository.save(account);
     }

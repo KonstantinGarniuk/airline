@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RouteRequestDto {
     private String departureAirport;
-    private String arrivalAirport;
+    private String destinationAirport;
     private LocalDate departureDate;
     private LocalDate returningDate;
+    private Integer seatsRequared = 1;
 }

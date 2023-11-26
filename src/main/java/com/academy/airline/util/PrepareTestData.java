@@ -130,7 +130,7 @@ public class PrepareTestData {
 			for (int j = 0; j < 3; j++) {
 				Location location = Location.builder()
 										.country("TestCountry" + i)
-										.town("TestTown" + i)
+										.town("TestTown" + i + j)
 										.build();
 				locations.add(location);
 			}
@@ -257,11 +257,16 @@ public class PrepareTestData {
 	private void prepareRoutes() {
 		routes = new ArrayList<>();
 		for (int i = 0; i < airports.size(); i++) {
-			Route route = Route.builder()
-					.departureAirport(airports.get(i))
-					.arrivalAirport(airports.get(airports.size() - i - 1))
-					.build();
-			routes.add(route);
+			for(int j = 0; j < airports.size(); j++) {
+				if (j != i) {
+					Route route = Route.builder()
+							.departureAirport(airports.get(i))
+							.destinationAirport(airports.get(j))
+							.distance(random.nextInt(5000))
+							.build();
+					routes.add(route);
+				}
+			}
 		}
 		routeRepository.saveAllAndFlush(routes);
 	}
@@ -269,7 +274,7 @@ public class PrepareTestData {
 		flights = new ArrayList<>();
 		LocalDateTime timeOfFlight = LocalDateTime.now();
 		for (Route route: routes) {
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 3; i++) {
 				Flight flight = Flight.builder()
 						.route(route)
 						.departureTime(timeOfFlight)

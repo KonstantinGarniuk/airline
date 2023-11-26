@@ -1,12 +1,8 @@
 package com.academy.airline.service;
 
-import java.util.List;
-
-import com.academy.airline.dto.RouteRequestDto;
-import com.academy.airline.model.entity.Flight;
+import com.academy.airline.dto.BookingDto;
+import com.academy.airline.model.entity.Account;
 
 public interface BookingService {
-    List<String> getFromAirports(String airportName);
-    List<String> getToAirports(String airportName);
-    List<Flight> getResults(RouteRequestDto request);    
+    void bookTickets(BookingDto bookingInfo, Account account);
 }

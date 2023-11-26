@@ -28,7 +28,7 @@
                 </tr>
             </table>
         </form>
-        <table class="schedule">
+        <table class="fligthList">
             <thead>
                 <th>Departure airport</th>
                 <th>Departure time</th>

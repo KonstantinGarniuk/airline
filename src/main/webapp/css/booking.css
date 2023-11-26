@@ -10,6 +10,7 @@
 	font-size: calc(20px + 16 * (100vw / 1280));
 }
 
-input[type="checkbox"] {
-    transform: scale(2.5);
+.checkable {
+    transform: scale(1.5);
 }
+

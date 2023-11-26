@@ -11,6 +11,8 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import jakarta.servlet.DispatcherType;
+
 
 
 @Configuration
@@ -31,10 +33,14 @@ public class SpringSecurityConfig {
     public SecurityFilterChain fillterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         return http
             .authorizeHttpRequests((auth) -> auth
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/booking")).authenticated()
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/charter")).authenticated()
-                .anyRequest().permitAll()
-            )
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/css/**")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/images/**")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/js/**")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/schedule")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/account")).permitAll()
+                .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR, DispatcherType.INCLUDE).permitAll()
+                .anyRequest().authenticated())
             .formLogin((form) -> form
                 .loginPage("/login")
                 .defaultSuccessUrl("/")

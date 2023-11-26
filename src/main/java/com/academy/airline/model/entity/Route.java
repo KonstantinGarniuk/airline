@@ -20,7 +20,7 @@ public class Route {
     private Airport departureAirport;
     @ManyToOne
     @JoinColumn(name = "arrival_airport_id")
-    private Airport arrivalAirport;
+    private Airport destinationAirport;
     @Column(name = "distance")
     private Integer distance;
 }

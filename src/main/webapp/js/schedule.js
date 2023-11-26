@@ -1,7 +1,7 @@
 
 
 function setDepartureGate(flightId, csrf) {
-    var params = new FormData();
+    let params = new FormData();
     params.set('flightId', flightId);
     params.set('departureGate', event.target.value);
     params.set('_csrf', csrf);
@@ -12,7 +12,7 @@ function setDepartureGate(flightId, csrf) {
 }
 
 function setArrivalGate(flightId, csrf) {
-    var params = new URLSearchParams();
+    let params = new URLSearchParams();
     params.set('flightId', flightId);
     params.set('arrivalGate', event.target.value);
     params.set('_csrf', csrf);
@@ -24,7 +24,7 @@ function setArrivalGate(flightId, csrf) {
 }
 
 function setFlightStatus(flightId, csrf) {
-    var params = new URLSearchParams();
+    let params = new URLSearchParams();
     params.set('flightId', flightId);
     params.set('flightStatus', event.target.value);
     params.set('_csrf', csrf);
