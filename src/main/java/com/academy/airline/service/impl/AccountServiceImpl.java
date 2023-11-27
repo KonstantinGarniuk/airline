@@ -1,5 +1,6 @@
 package com.academy.airline.service.impl;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.academy.airline.dto.CreateAccountDto;
@@ -19,15 +20,22 @@ import lombok.RequiredArgsConstructor;
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final PersonRepository personRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void seveAccount(CreateAccountDto createAccountDto) throws Exception {
-        Account account = CreateAccountMapper.mapToAccount(createAccountDto);
+        Account account = Account.builder()
+            .userName(createAccountDto.getUserName())
+            .password(passwordEncoder.encode(createAccountDto.getPassword()))
+            .passwordConfirm(passwordEncoder.encode(createAccountDto.getPasswordConfirm()))
+            .role(Role.CUSTOMER)
+            .discount(Discount.NONE)
+            .build();
         Account accountFromBD = accountRepository.findByUserName(account.getUsername());
         if(accountFromBD != null) {
             throw new Exception("Account with this login allready exists");
         }
-        if (!account.getPassword().equals(account.getPasswordConfirm())) {
+        if (!createAccountDto.getPassword().equals(createAccountDto.getPasswordConfirm())) {
             throw new Exception("Incorrect password");
         }
         Person person = CreateAccountMapper.mapToPerson(createAccountDto);
@@ -40,8 +48,6 @@ public class AccountServiceImpl implements AccountService {
                 throw new Exception("Person exists, but first or last name is wrong");
             }
         }
-        account.setRole(Role.CUSTOMER);
-        account.setDiscount(Discount.NONE);
         account.setPerson(personFromDb);
         accountRepository.save(account);
     }

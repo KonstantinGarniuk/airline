@@ -26,7 +26,7 @@ public class PrepareTestData {
 	private final RouteRepository routeRepository;
 	private final FlightRepository flightRepository;
 	private final TicketRepository ticketRepository;
-	PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
 	
 	private List<Airport> airports;
 	private List<Person> people;
