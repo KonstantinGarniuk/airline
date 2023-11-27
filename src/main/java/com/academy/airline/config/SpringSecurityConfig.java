@@ -39,11 +39,12 @@ public class SpringSecurityConfig {
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/js/**")).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/schedule")).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/account")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/registration")).anonymous()
                 .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR, DispatcherType.INCLUDE).permitAll()
                 .anyRequest().authenticated())
             .formLogin((form) -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/account")
                 .permitAll()
             )
             .logout((page) -> page

@@ -5,7 +5,7 @@
 
 <title>Gremlin Air Lines</title>
 
-<c:url var="logoUrl"        value="/images/logo.ico"    context="/"/>
+<c:url var="logoUrl"        value="/images/logo.ico"   context="/"/>
 <c:url var="mainStyleUrl"   value="/css/mainStyle.css" context="/"/>
 <c:url var="headerStyleUrl" value="/css/header.css"    context="/"/>
 <c:url var="pageCtrlUrl"    value="/js/pageCtrl.js"    context="/"/>

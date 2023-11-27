@@ -1,0 +1,17 @@
+.personInfoDisplay {
+    display: block;
+}
+.personInfoUpdate {
+    display: none;
+}
+#personInfo {
+    width: 100%;
+    color: rgb(24, 66, 24);
+	text-align: center;
+	font-weight: 900;
+	font-size: calc(10px + 10 * (100vw / 1280));
+	height: fit-content;
+}
+.userInfo {
+    text-align: left;
+}

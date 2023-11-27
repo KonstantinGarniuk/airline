@@ -1,5 +1,8 @@
 package com.academy.airline.service;
 
-public interface PersonService {
+import com.academy.airline.model.entity.Account;
+import com.academy.airline.model.entity.Person;
 
+public interface PersonService {
+    void updatePersonInfo(Person person, Account account) throws Exception;
 }

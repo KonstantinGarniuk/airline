@@ -31,6 +31,14 @@ input {
 	font-size: calc(12px + 16 * (100vw / 1280));
 }
 
+button {
+	color: rgb(1, 77, 1);
+	font-family: 'Courier New', Courier, monospace;
+	text-align: center;
+	font-weight: 900;
+	font-size: calc(12px + 16 * (100vw / 1280));
+}
+
 select {
 	color: rgb(1, 77, 1);
 	font-family: 'Courier New', Courier, monospace;
@@ -62,7 +70,6 @@ select {
 	text-align: center;
 	font-weight: 900;
 	font-size: calc(10px + 10 * (100vw / 1280));
-	/* padding-top: 50px; */
 	height: fit-content;
 }
 

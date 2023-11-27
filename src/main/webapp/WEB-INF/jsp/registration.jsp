@@ -53,7 +53,7 @@
                     <sf:label path="pid">Идентификационный номер: </sf:label>
                 </th>
                 <th>
-                    <sf:input path="pid" type="text" placeholder="Идентификационный номер"/>
+                    <sf:input path="pid" type="text" placeholder="ИД"/>
                 </th>
             </tr>
             <tr>

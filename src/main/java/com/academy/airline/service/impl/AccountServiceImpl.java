@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 import com.academy.airline.dto.CreateAccountDto;
 import com.academy.airline.mapper.CreateAccountMapper;
 import com.academy.airline.model.entity.Account;
+import com.academy.airline.model.entity.Discount;
 import com.academy.airline.model.entity.Person;
 import com.academy.airline.model.entity.Role;
 import com.academy.airline.model.repository.AccountRepository;
 import com.academy.airline.model.repository.PersonRepository;
+import com.academy.airline.model.repository.RoleRepository;
 import com.academy.airline.service.AccountService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final PersonRepository personRepository;
+    private final RoleRepository roleRepository;
 
     @Override
     public void seveAccount(CreateAccountDto createAccountDto) throws Exception {
@@ -39,7 +42,9 @@ public class AccountServiceImpl implements AccountService {
                 throw new Exception("Person exists, but first or last name is wrong");
             }
         }
-        account.setRole(Role.builder().id(1).build());
+        Role role = roleRepository.getReferenceById(1);
+        account.setRole(role);
+        account.setDiscount(Discount.builder().id(1).build());
         account.setPerson(personFromDb);
         accountRepository.save(account);
     }
