@@ -22,9 +22,6 @@
                 <div class="menuItems" onclick="showBookingPage()" >Бронирование билетов</div>
             </th>
             <th>
-                <div class="menuItems" onclick="showCharterPage()" >Заказ чартерных рейсов</div>
-            </th>
-            <th>
                 <div class="menuItems" onclick="showAccountPage()" >Личный кабинет</div>
             </th>
         </tr>

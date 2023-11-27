@@ -19,6 +19,6 @@ function updatePersonInfo() {
 }
 function canselTicket(id) {
     let params = new URLSearchParams();
-    params.set("ticket", id);
+    params.set("ticketId", id);
     document.location.href = "/ticket/cancel?" + params;
 }

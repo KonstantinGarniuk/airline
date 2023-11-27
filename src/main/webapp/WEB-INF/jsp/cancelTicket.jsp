@@ -13,8 +13,12 @@
     <body class="page">
         <jsp:include page="common/header.jsp"/>
         <h2>Вы действительно хотите отменить бронирование билета?</h2>
-        <input id="ticketId" type="hidden" value="${ticketId}">
-        <button onclick="confirm('${_csrf.token}')">Продолжить</button>
-        <button onclick="cancel()">Отмена</button>
+        
+        <sf:form action="/ticket/cancel" method="POST">
+            <input name="ticketId" type="hidden" value="${ticketId}">
+            <input type="submit"  value="Продолжить">
+            <button type="button" onclick="cancel()">Отмена</button>
+        </sf:form>
+        
     </body>
 </html>

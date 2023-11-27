@@ -82,7 +82,7 @@
                         <th>${flight.status}</th>
                         <th>
                             <c:if test="${(flight.status == 'Booked') || (flight.status == 'Paid')}">
-                                <button onclick="canselTicket('${flight.id}')">Отменить</button>
+                                <button type="button" onclick="canselTicket('${flight.id}')">Отменить</button>
                             </c:if>
                         </th>
                     </tr>
