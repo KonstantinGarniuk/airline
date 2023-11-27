@@ -1,22 +1,17 @@
 package com.academy.airline.model.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public enum Discount {
+    NONE(0),
+    BRONZE(10),
+    SILVER(30),
+    GOLD(40),
+    PLATINUM(50);
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-public class Discount {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "discount")
-    private Integer discount;
+    private Integer discountSize;
+    private Discount(Integer discount) {
+        this.discountSize = discount;
+    }
+    public Integer getDiscount() {
+        return discountSize;
+    }
 }

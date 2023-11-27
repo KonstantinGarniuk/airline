@@ -92,24 +92,24 @@ public class PrepareTestData {
 								.person(people.get(0))
 								.userName("TestManager")
 								.password(passwordEncoder.encode("manager"))
-								.role(Role.builder().id(6).build())
-								.discount(Discount.builder().id(1 + random.nextInt(4)).build())
+								.role(Role.MANAGER)
+								.discount(Discount.PLATINUM)
 								.build();
 		accounts.add(account);								
 		account = Account.builder()
 						.person(people.get(1))
 						.userName("TestDispatcher")
 						.password(passwordEncoder.encode("dispatcher"))
-						.role(Role.builder().id(7).build())
-						.discount(Discount.builder().id(1 + random.nextInt(4)).build())
+						.role(Role.DISPATCHER)
+						.discount(Discount.PLATINUM)
 						.build();
 		accounts.add(account);
 		account = Account.builder()
 						.person(people.get(4))
 						.userName("TestHr")
 						.password(passwordEncoder.encode("hr"))
-						.role(Role.builder().id(8).build())
-						.discount(Discount.builder().id(1 + random.nextInt(4)).build())
+						.role(Role.HR)
+						.discount(Discount.PLATINUM)
 						.build();
 		accounts.add(account);
 		for (int i = 0; i < 100; i++) {
@@ -117,8 +117,8 @@ public class PrepareTestData {
 							.person(people.get(i))
 							.userName("TestAccount" + i)
 							.password(passwordEncoder.encode("testPass" + i))
-							.role(Role.builder().id(5).build())
-							.discount(Discount.builder().id(1 + random.nextInt(4)).build())
+							.role(Role.CUSTOMER)
+							.discount(Discount.NONE)
 							.build();
 			accounts.add(account);			
 		}

@@ -13,7 +13,7 @@ public class AccountMapper {
             .lastName(account.getPerson().getLastName())
             .dob(account.getPerson().getDob())
             .pid(account.getPerson().getPid())
-            .role(account.getRole().getRole())
+            .role(account.getRole().getAuthority())
             .discount(account.getDiscount().getDiscount())
             .build();
     }

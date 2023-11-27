@@ -32,11 +32,11 @@ public class Account implements UserDetails{
     private String userName;
     @Column(name = "password")
     private String password;
-    @ManyToOne
-    @JoinColumn(name = "role_id")
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private Role role;
-    @ManyToOne
-    @JoinColumn(name = "discount_id")
+    @Column(name = "discount")
+    @Enumerated(EnumType.STRING)
     private Discount discount;
     @Transient
     private String passwordConfirm;
