@@ -34,6 +34,7 @@ public class PrepareTestData {
 	private List<Account> accounts;
 	private List<Route> routes;
 	private List<Flight> flights;
+	private List<Airplane> airplanes;
 
 	Random random;
 
@@ -187,7 +188,7 @@ public class PrepareTestData {
 		employeeRepository.saveAllAndFlush(employees);
 	}
 	private void prepareAirplanes() {
-		List<Airplane> airplanes = new ArrayList<>();
+		airplanes = new ArrayList<>();
 		for (int i = 0; i < 20; i++) {
 			List<Seat> seats = new ArrayList<>();
 			Airplane airplane = Airplane.builder()
@@ -280,6 +281,7 @@ public class PrepareTestData {
 						.departureTime(timeOfFlight)
 						.arrivalTime(timeOfFlight.plusHours(random.nextInt(20)))
 						.status(FlightStatus.GETTING_READY)
+						.airplane(airplanes.get(random.nextInt(airplanes.size() - 1)))
 						.build();
 				flights.add(flight);
 				timeOfFlight = timeOfFlight.plusMinutes(10 + random.nextInt(30));

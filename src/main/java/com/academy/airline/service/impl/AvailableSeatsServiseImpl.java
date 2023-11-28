@@ -20,6 +20,9 @@ public class AvailableSeatsServiseImpl implements AvailableSeatsServise {
 
     @Override
     public Integer countAvailableSeats(Flight flight) {
+        if (flight == null) {
+            return 0;
+        }
         Airplane airplane = flight.getAirplane();
         if(airplane == null) {
             return 0;
