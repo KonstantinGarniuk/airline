@@ -18,10 +18,10 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
     @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Person person;
-    @ManyToOne
-    @JoinColumn(name = "job_id")
+    @JoinColumn(name = "account_id")
+    private Account account;
+    @Column(name = "job")
+    @Enumerated(EnumType.STRING)
     private Job job;
     @ManyToOne
     @JoinColumn(name = "location_id")

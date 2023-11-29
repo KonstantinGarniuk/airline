@@ -142,24 +142,24 @@ public class PrepareTestData {
 		List<Employee> employees = new ArrayList<>();
 
 		Employee employee = Employee.builder()
-									.person(people.get(0))
-									.job(Job.builder().id(3).build())
+									.account(accounts.get(0))
+									.job(Job.MANAGER)
 									.location(locations.get(random.nextInt(locations.size() - 1)))
 									.salary(300 + random.nextInt(500))
 									.status(EmployeeStatus.ACTIVE)
 									.build();
 		employees.add(employee);
 		employee = Employee.builder()
-						.person(people.get(1))
-						.job(Job.builder().id(4).build())
+						.account(accounts.get(1))
+						.job(Job.DISPATCHER)
 						.location(locations.get(random.nextInt(locations.size() - 1)))
 						.salary(300 + random.nextInt(500))
 						.status(EmployeeStatus.ACTIVE)
 						.build();
 		employees.add(employee);
 		employee = Employee.builder()
-						.person(people.get(2))
-						.job(Job.builder().id(5).build())
+						.account(accounts.get(2))
+						.job(Job.HR)
 						.location(locations.get(random.nextInt(locations.size() - 1)))
 						.salary(300 + random.nextInt(500))
 						.status(EmployeeStatus.ACTIVE)
@@ -167,8 +167,8 @@ public class PrepareTestData {
 		employees.add(employee);
 		for (int i = 0; i < 10; i++) {
 			employee = Employee.builder()
-								.person(people.get(i + 10))
-								.job(Job.builder().id(1).build())
+								.account(accounts.get(i + 10))
+								.job(Job.PILOT)
 								.location(locations.get(random.nextInt(locations.size() - 1)))
 								.salary(700 + random.nextInt(700))
 								.status(EmployeeStatus.ACTIVE)
@@ -177,8 +177,8 @@ public class PrepareTestData {
 		}
 		for (int i = 0; i < 20; i++) {
 			employee = Employee.builder()
-								.person(people.get(i + 30))
-								.job(Job.builder().id(2).build())
+								.account(accounts.get(i + 30))
+								.job(Job.STEWARD)
 								.location(locations.get(random.nextInt(locations.size() - 1)))
 								.salary(300 + random.nextInt(500))
 								.status(EmployeeStatus.ACTIVE)

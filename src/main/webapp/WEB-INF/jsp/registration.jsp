@@ -10,7 +10,6 @@
 
 <body class="page">
   <jsp:include page="common/header.jsp"/>
-  <link rel="stylesheet" href="css/registration.css">
   <div>
     <sf:form action="/registration" method='POST' modelAttribute="createAccount">
       

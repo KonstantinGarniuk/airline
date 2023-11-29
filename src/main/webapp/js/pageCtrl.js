@@ -7,6 +7,9 @@ function showSchedulePage() {
 function showBookingPage() {
 	document.location.href = "/booking";
 }
+function showEmployeePage() {
+	document.location.href = "/employee";
+}
 function showAccountPage() {
 	document.location.href = "/account";
 }

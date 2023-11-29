@@ -1,20 +1,19 @@
 package com.academy.airline.model.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public enum Job {
+    PILOT("pilot"),
+    STEWARD("steward"),
+    MANAGER("manager"),
+    DISPATCHER("dispatcher"),
+    HR("hr"),
+    DISMISSED("dismissed");
+    
+    private String jobName;
+    private Job(String job) {
+        this.jobName = job;
+    }
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-public class Job {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @Column(name = "job")
-    private String job;
+    public String getJob() {
+        return jobName;
+    }
 }

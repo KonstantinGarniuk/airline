@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
 <div class="header">
     <table class="top">
@@ -21,6 +22,11 @@
             <th>
                 <div class="menuItems" onclick="showBookingPage()" >Бронирование билетов</div>
             </th>
+            <sec:authorize access="hasRole('HR')">
+                <th>
+                    <div class="menuItems" onclick="showEmployeePage()">Работа с персоналом</div>
+                </th>
+            </sec:authorize>
             <th>
                 <div class="menuItems" onclick="showAccountPage()" >Личный кабинет</div>
             </th>

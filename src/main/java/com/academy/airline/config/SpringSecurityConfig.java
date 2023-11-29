@@ -33,6 +33,8 @@ public class SpringSecurityConfig {
     public SecurityFilterChain fillterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         return http
             .authorizeHttpRequests((auth) -> auth
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/employee/**")).hasRole("HR")
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/employee")).hasRole("HR")
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/")).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/css/**")).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/images/**")).permitAll()
